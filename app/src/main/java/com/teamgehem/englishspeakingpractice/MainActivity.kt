@@ -9,7 +9,7 @@ import android.util.Log
 import com.teamgehem.englishspeakingpractice.fragments.HomeFragment
 import com.teamgehem.englishspeakingpractice.fragments.OnFragmentInteractionListener
 import com.teamgehem.englishspeakingpractice.fragments.QuizFragment
-import com.teamgehem.englishspeakingpractice.fragments.ThirdFragment
+import com.teamgehem.englishspeakingpractice.fragments.SettingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
             }
             R.id.navigation_notifications -> {
                 //message.setText(R.string.title_notifications)
-                setFragment(ThirdFragment.newInstance("123", "456"))
+                setFragment(SettingFragment.newInstance("123", "456"))
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
 
         setFragment(HomeFragment.newInstance(localClassName, "456"))
 
+        //Realm.init(this)
+        //Realm.deleteRealm(RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build())
     }
 
     fun setFragment(fragment: Fragment) {

@@ -12,10 +12,18 @@ import org.json.JSONObject
 object VolleyHelper {
 
     private val url = "https://script.google.com/macros/s/AKfycbyXSCGdKWXKA2abHGpMiDTryWg0SorY_A1r6BhJVH5EH-E716w/exec?cmd="
+    private val url2 = "https://script.google.com/macros/s/AKfycbyXSCGdKWXKA2abHGpMiDTryWg0SorY_A1r6BhJVH5EH-E716w/exec?cmd=%s&data=%s"
 
-    fun request(context: Context, cmd: DbCommand,
-                responseListener: (JSONObject) -> Unit = { jsonObject -> Log.d(LogTitle, "서버 response 수신: $jsonObject") }
-    ) {
+    val defaultResponseListener: (JSONObject) -> Unit = { jsonObject ->
+        Log.d(LogTitle, "서버 response 수신: $jsonObject")
+    }
+
+
+    fun request(context: Context, cmd: DbCommand, responseListener: (JSONObject) -> Unit = defaultResponseListener) {
         Volley.newRequestQueue(context).add(JsonObjectRequest(Request.Method.GET, "$url${cmd.name}", null, responseListener, { error -> Log.d(LogTitleError, "서버 Response 가져오기 실패: $error") }))
+    }
+
+    fun request(context: Context, cmd: DbCommand, localDate: Long, responseListener: (JSONObject) -> Unit = defaultResponseListener) {
+        Volley.newRequestQueue(context).add(JsonObjectRequest(Request.Method.GET, url2.format(cmd.name, localDate), null, responseListener, { error -> Log.d(LogTitleError, "서버 Response 가져오기 실패: $error") }))
     }
 }

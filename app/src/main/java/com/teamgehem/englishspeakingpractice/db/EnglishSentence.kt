@@ -1,22 +1,26 @@
 package com.teamgehem.englishspeakingpractice.db
 
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 open class EnglishSentence(
-    var question: String = "",
+        @PrimaryKey var index: Long = 0,
 
-    var answer: String = "",
+        var question: String = "",
 
-    var tryCount: Int = 0,
+        var answer: String = "",
 
-    var successCount: Int = 0
-):RealmObject(){
-    fun setSentences(question:String, answer:String){
+        var tryCount: Int = 0,
+
+        var successCount: Int = 0
+) : RealmObject() {
+    fun setSentences(index:Long, question: String, answer: String) {
+        this.index = index
         this.question = question
         this.answer = answer
     }
 
     override fun toString(): String {
-        return "Q: $question\nA: $answer"
+        return "idx: $index. Q: $question\nA: $answer"
     }
 }

@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.teamgehem.englishspeakingpractice.db.EnglishSentence
 import io.realm.RealmResults
 
-class SentenceRecyclerAdapter(val context:Context, val sentenceList:RealmResults<EnglishSentence>): RecyclerView.Adapter<SentenceRecyclerAdapter.Holder>(){
+class SentenceRecyclerAdapter(val context:Context, val sentenceList:List<EnglishSentence>): RecyclerView.Adapter<SentenceRecyclerAdapter.Holder>(){
     override fun getItemCount(): Int {
 
         return sentenceList.size

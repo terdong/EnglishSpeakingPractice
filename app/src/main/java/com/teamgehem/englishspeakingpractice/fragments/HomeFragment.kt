@@ -15,9 +15,10 @@ import com.android.volley.toolbox.Volley
 import com.teamgehem.englishspeakingpractice.R
 import com.teamgehem.englishspeakingpractice.db.EnglishSentence
 import com.teamgehem.englishspeakingpractice.recyclerview.SentenceRecyclerAdapter
+import com.vicpin.krealmextensions.querySorted
 import io.realm.Realm
 import io.realm.RealmResults
-import io.realm.kotlin.where
+import io.realm.Sort
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.json.JSONObject
 
@@ -78,7 +79,7 @@ class HomeFragment : Fragment() {
 
         val context = requireContext()
 
-        sentence_recycler_view.adapter = SentenceRecyclerAdapter(context, realm.where<EnglishSentence>().findAll())
+        sentence_recycler_view.adapter = SentenceRecyclerAdapter(context, EnglishSentence().querySorted("index", Sort.ASCENDING))
         sentence_recycler_view.layoutManager = LinearLayoutManager(context)
         sentence_recycler_view.setHasFixedSize(true)
 
